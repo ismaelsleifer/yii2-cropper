@@ -22,10 +22,5 @@
     "psr-4": {
       "sleifer\\cropper\\": "src/"
     }
-  },
-  "extra": {
-    "branch-alias": {
-      "master": ""
-    }
-  }  
+  }
 }
