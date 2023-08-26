@@ -1,6 +1,6 @@
 <?php
 
-namespace bilginnet\cropper;
+namespace sleifer\cropper;
 
 
 use Yii;
@@ -76,7 +76,7 @@ class Cropper extends InputWidget
     /**
      * @var  bool | string
      */
-    public $label;
+    public $buttonLabel;
 
     /**
      * default '{button} {preview}'
@@ -112,7 +112,7 @@ class Cropper extends InputWidget
             'attribute' => $this->attribute,
             'name' => isset($this->name) ? $this->name : null,
             'value' => $this->value,
-            'label' => $this->label,
+            // 'buttonLabel' => $this->buttonLabel,
             'uniqueId' => $this->uniqueId,
             'imageUrl' => $this->imageUrl,
             'cropperOptions' => $this->cropperOptions,
@@ -227,12 +227,12 @@ class Cropper extends InputWidget
 
     private function setInputLabel()
     {
-        $label = $this->label;
-        if ($label === null || (is_bool($label) && $label)) {
-            $label = $this->model->getAttributeLabel($this->attribute);
+        $buttonLabel = $this->buttonLabel;
+        if ($buttonLabel === null || (is_bool($buttonLabel) && $buttonLabel)) {
+            $buttonLabel = $this->model->getAttributeLabel($this->attribute);
         }
 
-        $this->label = $label;
+        $this->buttonLabel = $buttonLabel;
     }
 
     private function setJsOptions()

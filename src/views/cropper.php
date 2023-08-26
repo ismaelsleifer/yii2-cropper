@@ -1,16 +1,16 @@
 <?php
-/** @var $this View */
-/** @var $model \yii\db\ActiveRecord */
-/** @var $name string */
-/** @var $attribute string */
-/** @var $value mixed */
-/** @var $label mixed */
-/** @var $uniqueId string */
-/** @var $imageUrl string */
-/** @var $cropperOptions mixed */
-/** @var $jsOptions mixed */
-/** @var $template string */
-
+/** 
+* @var $this View 
+* @var $model \yii\db\ActiveRecord
+* @var $name string 
+* @var $attribute string 
+* @var $value mixed 
+* @var $uniqueId string 
+* @var $imageUrl string 
+* @var $cropperOptions mixed 
+* @var $jsOptions mixed 
+* @var $template string 
+*/
 
 use yii\bootstrap\Html;
 use yii\web\View;
@@ -18,19 +18,19 @@ use yii\web\View;
 switch ($jsOptions['pos']) {
     default:
     case View::POS_END:
-        \bilginnet\cropper\CropperAsset::register($this);
+        \sleifer\cropper\CropperAsset::register($this);
         break;
     case View::POS_BEGIN:
-        \bilginnet\cropper\CropperBeginAsset::register($this);
+        \sleifer\cropper\CropperBeginAsset::register($this);
         break;
     case View::POS_HEAD:
-        \bilginnet\cropper\CropperHeadAsset::register($this);
+        \sleifer\cropper\CropperHeadAsset::register($this);
         break;
     case View::POS_LOAD:
-        \bilginnet\cropper\CropperLoadAsset::register($this);
+        \sleifer\cropper\CropperLoadAsset::register($this);
         break;
     case View::POS_READY:
-        \bilginnet\cropper\CropperReadyAsset::register($this);
+        \sleifer\cropper\CropperReadyAsset::register($this);
         break;
 }
 
@@ -41,10 +41,10 @@ $aspectRatio = $cropWidth / $cropHeight;
 $browseLabel = $cropperOptions['icons']['browse'] . ' ' . Yii::t('cropper', 'Browse');
 $cropLabel = $cropperOptions['icons']['crop'] . ' ' . Yii::t('cropper', 'Crop');
 $closeLabel = $cropperOptions['icons']['close'] . ' ' . Yii::t('cropper', 'Crop') . ' & ' . Yii::t('cropper', 'Close');
-if ($label !== false) $browseLabel = $cropperOptions['icons']['browse'] . ' ' . $label;
+if (isset($cropperOptions['buttonLabel'])) $cropperOptions['buttonLabel'] = $cropperOptions['icons']['browse'] . ' ' . $cropperOptions['buttonLabel'];
 
 // button template
-$buttonContent = Html::button($browseLabel, [
+$buttonContent = Html::button($cropperOptions['buttonLabel'], [
     'class' => $cropperOptions['buttonCssClass'],
     'data-toggle' => 'modal',
     'data-target' => '#cropper-modal-' . $uniqueId,
@@ -86,7 +86,7 @@ if (!empty($name)) {
 } else {
     $input = Html::tag('div', Html::activeTextInput($model, $attribute, [
         'value' => $value,
-        'class' => 'hidden',
+        'class' => 'd-none',
     ]), ['id' => $uniqueId, 'class' => '',]);
     $inputId = Html::getInputId($model, $attribute);
 }
@@ -275,9 +275,6 @@ $this->registerJs(<<<JS
         options_$uniqueId.element.image.cropper(cropper_options_$uniqueId);        
     });
     
-    
-    
-    
     var imageUrl_$uniqueId = '$imageUrl';
     var setElement_$uniqueId = function(src) {
         options_$uniqueId.element.modal.find('.modal-body > div').html('<img src="' + src + '" id="cropper-image-$uniqueId">');
@@ -310,9 +307,6 @@ $this->registerJs(<<<JS
         }       
     });
 
-    
-    
-    
     function setCrop$uniqueId() {        
         if (!options_$uniqueId.croppable) {
             return;
@@ -326,7 +320,6 @@ $this->registerJs(<<<JS
         options_$uniqueId.input.model.val(options_$uniqueId.croppedCanvas.toDataURL());
     }
     
-
     options_$uniqueId.button.crop.click(function() { setCrop$uniqueId(); });
     options_$uniqueId.button.close.click(function() { setCrop$uniqueId(); });
     $('[data-target="#cropper-modal-$uniqueId"]').click(function() {
@@ -335,11 +328,6 @@ $this->registerJs(<<<JS
             options_$uniqueId.input.crop.click();
         }
     });
-    
-    
-     
-    
-    
 
     options_$uniqueId.element.modal.find('.move-left').click(function() { 
         if (!options_$uniqueId.croppable) return;

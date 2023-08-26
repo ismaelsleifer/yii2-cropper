@@ -1,6 +1,6 @@
 <?php
 
-namespace bilginnet\cropper;
+namespace sleifer\cropper;
 
 
 use yii\web\AssetBundle;
@@ -11,7 +11,7 @@ use yii\web\View;
  */
 class CropperHeadAsset extends AssetBundle
 {
-    public $sourcePath = '@bilginnet/cropper/assets';
+    public $sourcePath = '@sleifer/cropper/assets';
     public $jsOptions = ['position' => View::POS_HEAD];
     public $css = [
         'cropper.css',
