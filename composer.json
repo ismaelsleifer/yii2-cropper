@@ -1,14 +1,15 @@
 {
-  "name": "bilginnet/yii2-cropper",
+  "name": "sleifer/yii2-cropper",
   "description": "Yii2 Bootstrap Cropper Input Widget",
   "type": "yii2-extension",
   "keywords": ["yii2","extension","cropper","widget"],
   "license": "MIT",
+  "version": "1.0.0",
   "authors": [
     {
-      "name": "Ercan Bilgin",
-      "email": "bilginnet@gmail.com",
-      "homepage": "https://github.com/bilginnet?tab=repositories"
+      "name": "Ismael Sleifer",
+      "email": "ismaelsleifer@gmail.com",
+      "homepage": "https://github.com/ismaelsleifer/yii2-cropper"
     }
   ],
   "minimum-stability": "dev",
@@ -19,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "bilginnet\\cropper\\": "src/"
+      "sleifer\\cropper\\": "src/"
     }
   },
   "extra": {
