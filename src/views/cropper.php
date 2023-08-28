@@ -34,17 +34,14 @@ switch ($jsOptions['pos']) {
         break;
 }
 
-
 $cropWidth = $cropperOptions['width'];
 $cropHeight = $cropperOptions['height'];
 $aspectRatio = $cropWidth / $cropHeight;
-$browseLabel = $cropperOptions['buttonLabel'] ?? 'Browse';
-$browseLabel = $cropperOptions['icons']['browse'] . ' ' . $browseLabel;
-$cropLabel = $cropperOptions['icons']['crop'] . ' ' . Yii::t('cropper', 'Crop');
-$closeLabel = $cropperOptions['icons']['close'] . ' ' . Yii::t('cropper', 'Crop') . ' & ' . Yii::t('cropper', 'Close');
+
+$buttonLabel = $cropperOptions['icons']['browse'] . ' ' . $cropperOptions['label']['browse'];
 
 // button template
-$buttonContent = Html::button($browseLabel, [
+$buttonContent = Html::button($buttonLabel, [
     'class' => $cropperOptions['buttonCssClass'],
     'data-toggle' => 'modal',
     'data-target' => '#cropper-modal-' . $uniqueId,
@@ -68,7 +65,7 @@ if ($cropperOptions['preview'] !== false) {
             'class' => 'cropper-result',
             'style' => "width: $previewWidth; height: $previewHeight;",
             'data-buttonid' => 'cropper-select-button-' . $uniqueId,
-            'onclick' => 'js: $("#cropper-select-button-'.$uniqueId.'").click()',
+            // 'onclick' => 'js: $("#cropper-select-button-'.$uniqueId.'").click()',
         ]) .
     '</div>';
 } else {
@@ -113,7 +110,7 @@ if ($cropperOptions['preview'] !== false) {
         border: 1px dotted #bfbfbf; 
         background-color: #f5f5f5;
         position: relative;   
-        cursor: pointer;     
+        /*cursor: pointer;*/     
     }');
 
 
@@ -180,7 +177,6 @@ if ($cropperOptions['preview'] !== false) {
 $modal = $this->render('modal', [
     'unique' => $uniqueId,
     'cropperOptions' => $cropperOptions,
-    // 'browseLabel' => $browseLabel
 ]);
 
 
@@ -233,7 +229,7 @@ $this->registerJs(<<<JS
         aspectRatio: $aspectRatio,
         // viewMode: 2,            
         // autoCropArea: 0.98,
-        responsive: false,
+        responsive: true,
         crop: function (e) {
 
             options_$uniqueId.data.width = Math.round(e.width);

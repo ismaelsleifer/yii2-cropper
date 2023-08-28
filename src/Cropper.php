@@ -7,8 +7,6 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\bootstrap\InputWidget;
 use yii\helpers\ArrayHelper;
-use yii\helpers\StringHelper;
-use yii\helpers\VarDumper;
 use yii\web\View;
 
 /**
@@ -79,11 +77,11 @@ class Cropper extends InputWidget
     public $buttonLabel;
 
     /**
-     * default '{button} {preview}'
+     * default '{preview} {button}'
      *
      * @var string
      */
-    public $template = '{button} {preview}';
+    public $template = '{preview} {button}';
 
     public function init()
     {
@@ -164,24 +162,28 @@ class Cropper extends InputWidget
             $options['preview'] = false;
         }
 
-        // VarDumper::dump($options, 10, true); die(__FILE__ . ' - ' . __LINE__);
-
-
         // button & icons options
-        if (!isset($options['buttonCssClass'])) $options['buttonCssClass'] = 'btn btn-primary';
-        if (!isset($options['icons']['browse'])) $options['icons']['browse'] = '<i class="fa fa-image"></i>';
-        if (!isset($options['icons']['crop'])) $options['icons']['crop'] = '<i class="fa fa-crop"></i>';
-        if (!isset($options['icons']['close'])) $options['icons']['close'] = '<i class="fa fa-crop"></i>';
-        if (!isset($options['icons']['zoom-in'])) $options['icons']['zoom-in'] = '<i class="fa fa-search-plus"></i>';
-        if (!isset($options['icons']['zoom-out'])) $options['icons']['zoom-out'] = '<i class="fa fa-search-minus"></i>';
-        if (!isset($options['icons']['rotate-left'])) $options['icons']['rotate-left'] = '<i class="fa fa-undo"></i>';
-        if (!isset($options['icons']['rotate-right'])) $options['icons']['rotate-right'] = '<i class="fa fa-redo"></i>';
-        if (!isset($options['icons']['flip-horizontal'])) $options['icons']['flip-horizontal'] = '<i class="fa fa-arrows-alt-h"></i>';
-        if (!isset($options['icons']['flip-vertical'])) $options['icons']['flip-vertical'] = '<i class="fa fa-arrows-alt-v"></i>';
-        if (!isset($options['icons']['move-left'])) $options['icons']['move-left'] = '<i class="fa fa-arrow-left"></i>';
-        if (!isset($options['icons']['move-right'])) $options['icons']['move-right'] = '<i class="fa fa-arrow-right"></i>';
-        if (!isset($options['icons']['move-up'])) $options['icons']['move-up'] = '<i class="fa fa-arrow-up"></i>';
-        if (!isset($options['icons']['move-down'])) $options['icons']['move-down'] = '<i class="fa fa-arrow-down"></i>';
+
+        $options['buttonCssClass']           = $options['buttonCssClass']           ?? 'btn btn-primary';
+        $options['icons']['browse']          = $options['icons']['browse']          ?? '<i class="fa fa-image"></i>';
+        $options['icons']['crop']            = $options['icons']['crop']            ?? '<i class="fa fa-crop"></i>';
+        $options['icons']['close']           = $options['icons']['close']           ?? '<i class="fa fa-crop"></i>';
+        $options['icons']['zoom-in']         = $options['icons']['zoom-in']         ?? '<i class="fa fa-search-plus"></i>';
+        $options['icons']['zoom-out']        = $options['icons']['zoom-out']        ?? '<i class="fa fa-search-minus"></i>';
+        $options['icons']['rotate-left']     = $options['icons']['rotate-left']     ?? '<i class="fa fa-undo"></i>';
+        $options['icons']['rotate-right']    = $options['icons']['rotate-right']    ?? '<i class="fa fa-redo"></i>';
+        $options['icons']['flip-horizontal'] = $options['icons']['flip-horizontal'] ?? '<i class="fa fa-arrows-alt-h"></i>';
+        $options['icons']['flip-vertical']   = $options['icons']['flip-vertical']   ?? '<i class="fa fa-arrows-alt-v"></i>';
+        $options['icons']['move-left']       = $options['icons']['move-left']       ?? '<i class="fa fa-arrow-left"></i>';
+        $options['icons']['move-right']      = $options['icons']['move-right']      ?? '<i class="fa fa-arrow-right"></i>';
+        $options['icons']['move-up']         = $options['icons']['move-up']         ?? '<i class="fa fa-arrow-up"></i>';
+        $options['icons']['move-down']       = $options['icons']['move-down']       ?? '<i class="fa fa-arrow-down"></i>';
+
+
+        $options['label']['modal']  =  $options['label']['modal'] ?? Yii::t('cropper', 'Image Crop Editor');
+        $options['label']['browse'] = $options['label']['browse'] ?? Yii::t('cropper', 'Browse');
+        $options['label']['crop']   = $options['label']['crop']   ?? Yii::t('cropper', 'Crop');
+        $options['label']['close']  = $options['label']['close']  ?? Yii::t('cropper', 'Crop & Close');
 
         $this->cropperOptions = $options;
     }
@@ -219,7 +221,6 @@ class Cropper extends InputWidget
                 $previewHeight = $options['preview']['height'] . 'px';
             }
         }
-
 
         return ['width' => $previewWidth, 'height' => $previewHeight];
     }
