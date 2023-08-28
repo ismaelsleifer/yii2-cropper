@@ -112,7 +112,6 @@ class Cropper extends InputWidget
             'attribute' => $this->attribute,
             'name' => isset($this->name) ? $this->name : null,
             'value' => $this->value,
-            // 'buttonLabel' => $this->buttonLabel,
             'uniqueId' => $this->uniqueId,
             'imageUrl' => $this->imageUrl,
             'cropperOptions' => $this->cropperOptions,
@@ -175,10 +174,10 @@ class Cropper extends InputWidget
         if (!isset($options['icons']['close'])) $options['icons']['close'] = '<i class="fa fa-crop"></i>';
         if (!isset($options['icons']['zoom-in'])) $options['icons']['zoom-in'] = '<i class="fa fa-search-plus"></i>';
         if (!isset($options['icons']['zoom-out'])) $options['icons']['zoom-out'] = '<i class="fa fa-search-minus"></i>';
-        if (!isset($options['icons']['rotate-left'])) $options['icons']['rotate-left'] = '<i class="fa fa-rotate-left"></i>';
-        if (!isset($options['icons']['rotate-right'])) $options['icons']['rotate-right'] = '<i class="fa fa-rotate-right"></i>';
-        if (!isset($options['icons']['flip-horizontal'])) $options['icons']['flip-horizontal'] = '<i class="fa fa-arrows-h"></i>';
-        if (!isset($options['icons']['flip-vertical'])) $options['icons']['flip-vertical'] = '<i class="fa fa-arrows-v"></i>';
+        if (!isset($options['icons']['rotate-left'])) $options['icons']['rotate-left'] = '<i class="fa fa-undo"></i>';
+        if (!isset($options['icons']['rotate-right'])) $options['icons']['rotate-right'] = '<i class="fa fa-redo"></i>';
+        if (!isset($options['icons']['flip-horizontal'])) $options['icons']['flip-horizontal'] = '<i class="fa fa-arrows-alt-h"></i>';
+        if (!isset($options['icons']['flip-vertical'])) $options['icons']['flip-vertical'] = '<i class="fa fa-arrows-alt-v"></i>';
         if (!isset($options['icons']['move-left'])) $options['icons']['move-left'] = '<i class="fa fa-arrow-left"></i>';
         if (!isset($options['icons']['move-right'])) $options['icons']['move-right'] = '<i class="fa fa-arrow-right"></i>';
         if (!isset($options['icons']['move-up'])) $options['icons']['move-up'] = '<i class="fa fa-arrow-up"></i>';

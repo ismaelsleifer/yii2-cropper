@@ -38,13 +38,13 @@ switch ($jsOptions['pos']) {
 $cropWidth = $cropperOptions['width'];
 $cropHeight = $cropperOptions['height'];
 $aspectRatio = $cropWidth / $cropHeight;
-$browseLabel = $cropperOptions['icons']['browse'] . ' ' . Yii::t('cropper', 'Browse');
+$browseLabel = $cropperOptions['buttonLabel'] ?? 'Browse';
+$browseLabel = $cropperOptions['icons']['browse'] . ' ' . $browseLabel;
 $cropLabel = $cropperOptions['icons']['crop'] . ' ' . Yii::t('cropper', 'Crop');
 $closeLabel = $cropperOptions['icons']['close'] . ' ' . Yii::t('cropper', 'Crop') . ' & ' . Yii::t('cropper', 'Close');
-if (isset($cropperOptions['buttonLabel'])) $cropperOptions['buttonLabel'] = $cropperOptions['icons']['browse'] . ' ' . $cropperOptions['buttonLabel'];
 
 // button template
-$buttonContent = Html::button($cropperOptions['buttonLabel'], [
+$buttonContent = Html::button($browseLabel, [
     'class' => $cropperOptions['buttonCssClass'],
     'data-toggle' => 'modal',
     'data-target' => '#cropper-modal-' . $uniqueId,
@@ -127,6 +127,12 @@ if ($cropperOptions['preview'] !== false) {
         position: relative;   
         cursor: pointer;     
     }*/
+
+    .cropperBtnEdit .btn-group{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
     #cropper-modal-'.$uniqueId.' img{
         max-width: 100%;
     }
@@ -174,12 +180,13 @@ if ($cropperOptions['preview'] !== false) {
 $modal = $this->render('modal', [
     'unique' => $uniqueId,
     'cropperOptions' => $cropperOptions,
+    // 'browseLabel' => $browseLabel
 ]);
 
 
 $this->registerJs(<<<JS
 
-    $('body').prepend('$modal');
+    $('body').prepend('{$modal}');
 
     var options_$uniqueId = {
         croppable: false,
@@ -224,8 +231,8 @@ $this->registerJs(<<<JS
     
     var cropper_options_$uniqueId = {
         aspectRatio: $aspectRatio,
-        viewMode: 2,            
-        autoCropArea: 0.98,
+        // viewMode: 2,            
+        // autoCropArea: 0.98,
         responsive: false,
         crop: function (e) {
 
@@ -257,7 +264,6 @@ $this->registerJs(<<<JS
             options_$uniqueId.croppable = true;
         }
     }
-    
     
     // input file change
     options_$uniqueId.input.crop.change(function(event) {
