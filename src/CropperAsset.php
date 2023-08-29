@@ -12,7 +12,7 @@ use yii\web\View;
 class CropperAsset extends AssetBundle
 {
     public $sourcePath = '@sleifer/cropper/assets';
-    public $jsOptions = ['position' => View::POS_END];
+    // public $jsOptions = ['position' => View::POS_END];
     public $css = [
         'cropper.css',
     ];
