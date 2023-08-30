@@ -166,7 +166,7 @@ class Cropper extends InputWidget
 
         $options['buttonCssClass']           = $options['buttonCssClass']           ?? 'btn btn-primary';
         $options['icons']['browse']          = $options['icons']['browse']          ?? '<i class="fa fa-image"></i>';
-        $options['icons']['crop']            = $options['icons']['crop']            ?? '<i class="fa fa-crop"></i>';
+        $options['icons']['cancel']          = $options['icons']['cancel']          ?? '<i class="fa fa-times"></i>';
         $options['icons']['close']           = $options['icons']['close']           ?? '<i class="fa fa-crop"></i>';
         $options['icons']['zoom-in']         = $options['icons']['zoom-in']         ?? '<i class="fa fa-search-plus"></i>';
         $options['icons']['zoom-out']        = $options['icons']['zoom-out']        ?? '<i class="fa fa-search-minus"></i>';
@@ -182,7 +182,7 @@ class Cropper extends InputWidget
 
         $options['label']['modal']  =  $options['label']['modal'] ?? Yii::t('cropper', 'Image Crop Editor');
         $options['label']['browse'] = $options['label']['browse'] ?? Yii::t('cropper', 'Browse');
-        $options['label']['crop']   = $options['label']['crop']   ?? Yii::t('cropper', 'Crop');
+        $options['label']['cancel']   = $options['label']['cancel']   ?? Yii::t('cropper', 'Cancel');
         $options['label']['close']  = $options['label']['close']  ?? Yii::t('cropper', 'Crop & Close');
 
         $this->cropperOptions = $options;

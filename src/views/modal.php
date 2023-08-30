@@ -10,7 +10,7 @@ $cropWidth = $cropperOptions['width'];
 $cropHeight = $cropperOptions['height'];
 
 echo '<div class="modal fade" tabindex="-1" role="dialog" id="cropper-modal-'. $unique .'">'
-    .'<div class="modal-dialog modal-lg" role="document">'
+    .'<div class="modal-dialog modal-sm" role="document">'
         .'<div class="modal-content">'
             .'<div class="modal-header">'
                 .'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
@@ -41,12 +41,12 @@ echo '<div class="modal fade" tabindex="-1" role="dialog" id="cropper-modal-'. $
                 .'</div>'
             .'</div>'
             .'<div class="modal-footer">'
-                .'<button type="button" id="crop-button-'. $unique .'" class="btn btn-success">'.
-                    $cropperOptions['icons']['crop'] . ' ' . $cropperOptions['label']['crop'] .
-                '</button>'
-                .'<button type="button" id="close-button-'. $unique .'" class="btn btn-danger" data-dismiss="modal">'
-                    . $cropperOptions['icons']['close'] . ' ' . $cropperOptions['label']['close'].
-                '</button>'
+                .'<button type="button" id="close-button-'. $unique .'" class="btn btn-success" data-dismiss="modal">'
+                    . $cropperOptions['icons']['close'] . ' ' . $cropperOptions['label']['close']
+                .'</button>'
+                .'<button type="button" data-dismiss="modal" class="btn btn-danger">'
+                    . $cropperOptions['icons']['cancel'] . ' ' . $cropperOptions['label']['cancel'] 
+                .'</button>'
             .'</div>'
         .'</div>'
     .'</div>'
