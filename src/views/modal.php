@@ -9,7 +9,7 @@
 $cropWidth = $cropperOptions['width'];
 $cropHeight = $cropperOptions['height'];
 
-echo '<div class="modal fade" tabindex="-1" role="dialog" id="cropper-modal-'. $unique .'">'
+echo '<div class="modal fade" tabindex="-1" role="dialog" id="cropper-modal-'. $unique .'" style="z-index: 999999999;">'
     .'<div class="modal-dialog modal-sm" role="document">'
         .'<div class="modal-content">'
             .'<div class="modal-header">'
